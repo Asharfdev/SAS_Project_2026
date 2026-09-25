@@ -29,54 +29,31 @@ do {
         affichageCandidats()
         //////////////////////////////////
 
-
         choix  = +read("enter votre choix :")
 
-
        switch (choix) {
-        case 1:  
-                   ////////////mini Meni de 1///////
-                  console.log("1. ajouter un candidat"); 
-                  console.log("2. ajouter plusieur candidat");     
-                  console.log("0. revnir au menu principale"); 
-                  choix1  = +read("enter votre choix :")
-
-                  switch (key) {
-                        case 1:
-                                
-                                break;
-                        case 2:
-                                
-                                break;
-                        case 0:
-                                
-                                break;        
-                  
-                        default:
-                          console.log("Choix n est pas valide");
-                                break;
-                  }
-
-        
-
+        case 1:   
+                ajoutercandidat();
                 break;
        case 2:  
                      
                 break;
-                case 3:  
+       case 3:  
                      
                 break;
-                case 4:  
+       case 4:  
                      
                 break;
-                case 5:  
+       case 5:  
                      
                 break;
-                case 6:  
+        case 6:  
                      
                 break;
-                case 7:
-                        case 8:  
+       case 7:
+       
+               break;  
+       case 0:  
                      
                 break;  
                      
@@ -84,12 +61,12 @@ do {
                 console.log("Choix n est pas valide");
                 break;
        }
-      
 
 } while( choix !== 0 );
 
-        
-    
+
+
+
 
 
 
@@ -113,4 +90,54 @@ function affichageCandidats() {
         console.log("6. rechercher ");
         console.log("7. statistique ");
         console.log("0. quitter");
+         
+        
+}
+
+function ajoutercandidat() {
+                   ////////////mini Meni de 1///////
+                  console.log("1. ajouter un candidat"); 
+                  console.log("2. ajouter plusieur candidat");     
+                  console.log("0. revnir au menu principale"); 
+                  choix  = +read("enter votre choix :")
+
+                  let cin = 0;
+                  let nom = 0;
+                  let prenom = 0;
+                  let partiPolitique = 0;
+                  let age = 0;
+
+                  switch (choix) {
+                        case 1:  
+                        
+                        cin = read("CIN :");
+                        nom = read("NOM :");
+                        prenom = read("PRENIOM :");
+                        partiPolitique = read("partiPolitique :");
+                        age = read("age :")
+
+                        let candidat = {
+                                cin : cin,
+                                nom : nom,
+                                prenom : prenom,
+                                partiPolitique : partiPolitique,
+                                age : age,
+                                electeurs :[]
+                        }
+
+                        candidats.push(candidat);  
+
+                                break;
+                        case 2:
+                                
+                                break;
+                        case 0:
+                                
+                                break;        
+                  
+                        default:
+                          console.log("Choix n est pas valide");
+                                break;
+                  }     
+
 }
