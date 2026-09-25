@@ -1,68 +1,64 @@
 const read = require("prompt-sync")();
 
 const candidats = [
-  {
-	cin : "AB123456",
-	nom : "Boushaba",
-	prenom : "Soufiane",
-	partiPolitique : "Indépendant",
-	age: 40,
-	electeurs: []
-},
+        {
+                cin: "AB123456",
+                nom: "Boushaba",
+                prenom: "Soufiane",
+                partiPolitique: "Indépendant",
+                age: 40,
+                electeurs: []
+        },
 
-{
-	cin : "AB123456",
-	nom : "Boushaba",
-	prenom : "Soufiane",
-	partiPolitique : "Indépendant",
-	age: 40,
-	electeurs: []
-}
 
 ];
 
-choix = 0 ;
+let choix = 0;
 
 do {
-      
+
         //////////////Called Functions///// 
-        affichageCandidats()
-        //////////////////////////////////
+        displayMenu()
+      
+        
+        switch (choix) {
+                case 1:
 
-        choix  = +read("enter votre choix :")
+                        addCandidate();
 
-       switch (choix) {
-        case 1:   
-                ajoutercandidat();
-                break;
-       case 2:  
-                     
-                break;
-       case 3:  
-                     
-                break;
-       case 4:  
-                     
-                break;
-       case 5:  
-                     
-                break;
-        case 6:  
-                     
-                break;
-       case 7:
-       
-               break;  
-       case 0:  
-                     
-                break;  
-                     
-        default:
-                console.log("Choix n est pas valide");
-                break;
-       }
+                        break;
+                case 2:
+                        DisipalyCandidtes()
 
-} while( choix !== 0 );
+                        break;
+                case 3:
+
+                        break;
+                case 4:
+
+                        break;
+                case 5:
+
+                        break;
+                case 6:
+
+                        break;
+                case 7:
+
+                        break;
+                case 0:
+
+                        break;
+
+                default:
+                        console.log("Choix n est pas valide");
+                        break;
+        }
+
+} while (choix !== 0);
+
+
+
 
 
 
@@ -79,9 +75,9 @@ do {
 
 ///////////////////////////Functions to be called/////////0
 
-function affichageCandidats() {
-         ////////////Menu ///////////
-        console.log("*********  elections ******");
+function displayMenu() {
+        ////////////Menu ///////////
+        console.log("*********  Menu ******");
         console.log("1. ajouter un condidat");
         console.log("2. afficer la list de candidats");
         console.log("3. voter ");
@@ -90,26 +86,47 @@ function affichageCandidats() {
         console.log("6. rechercher ");
         console.log("7. statistique ");
         console.log("0. quitter");
-         
-        
+        choix = +read("Enter votre choix :")
+
 }
 
-function ajoutercandidat() {
-                   ////////////mini Meni de 1///////
-                  console.log("1. ajouter un candidat"); 
-                  console.log("2. ajouter plusieur candidat");     
-                  console.log("0. revnir au menu principale"); 
-                  choix  = +read("enter votre choix :")
+function addCandidate() {
+        ////////////mini Meni de 1///////
+        console.log("1. ajouter un candidat");
+        console.log("2. ajouter plusieur candidat");
+        console.log("0. revenir au menu principale");
+        choix = +read("enter votre choix :")
 
-                  let cin = 0;
-                  let nom = 0;
-                  let prenom = 0;
-                  let partiPolitique = 0;
-                  let age = 0;
 
-                  switch (choix) {
-                        case 1:  
-                        
+        switch (choix) {
+                case 1:
+
+                         addSingleCandidate()
+
+                        break;
+                case 2:
+
+                        let numberP = +read("Enter Un Number de candidat :");
+                        for (let i = 1; i<= numberP; i++) {
+                               addSingleCandidate();
+                        }
+
+                        break;
+                case 0:
+
+                     displayMenu();
+                        break;
+
+                default:
+                        console.log("Choix n est pas valide");
+                        break;
+        }
+
+}
+
+function addSingleCandidate() {
+        
+
                         cin = read("CIN :");
                         nom = read("NOM :");
                         prenom = read("PRENIOM :");
@@ -117,27 +134,25 @@ function ajoutercandidat() {
                         age = read("age :")
 
                         let candidat = {
-                                cin : cin,
-                                nom : nom,
-                                prenom : prenom,
-                                partiPolitique : partiPolitique,
-                                age : age,
-                                electeurs :[]
+                                cin: cin,
+                                nom: nom,
+                                prenom: prenom, 
+                                partiPolitique: partiPolitique,
+                                age: age,
+                                electeurs: []
                         }
 
-                        candidats.push(candidat);  
+                        candidats.push(candidat);
+                        console.table(candidats);
+        
+}
 
-                                break;
-                        case 2:
-                                
-                                break;
-                        case 0:
-                                
-                                break;        
-                  
-                        default:
-                          console.log("Choix n est pas valide");
-                                break;
-                  }     
-
+function DisipalyCandidtes() {
+            ////////////mini Meni de 3///////
+        console.log("1. Afficher la list des candidats");
+        console.log("2. Afficher par tier");
+        console.log("3. Afficher par filter");
+        console.log("0. Afficher par filter");
+        choix = +read("enter votre choix :")
+    
 }
