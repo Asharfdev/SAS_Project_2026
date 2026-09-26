@@ -45,10 +45,11 @@ do {
 
                         break;
                 case 2:
-                        DisipalyCandidtes()
+                        DisipalyCandidtes();
 
                         break;
                 case 3:
+                        voter();
 
                         break;
                 case 4:
@@ -104,7 +105,8 @@ function displayMenu() {
         console.log("7. statistique ");
         console.log("0. quitter");
         choix = +read("Enter votre choix :")
-        console.log("\n\n\n");
+        console.log("\n");
+        console.log("------------------------");
 
 }
 
@@ -114,7 +116,7 @@ function addCandidate() {
         console.log("2. ajouter plusieur candidat");
         console.log("0. revenir au menu principale");
         choix = +read("enter votre choix :")
-        console.log("\n\n\n");
+         console.log("------------------------");
 
 
         switch (choix) {
@@ -124,12 +126,8 @@ function addCandidate() {
 
                         break;
                 case 2:
-
-                        let numberP = +read("Enter Un Number de candidat :");
-                        for (let i = 1; i <= numberP; i++) {
-                                addSingleCandidate();
-                        }
-
+                        addSingleCandidate();
+                       
                         break;
                 case 0:
 
@@ -145,7 +143,10 @@ function addCandidate() {
 
 function addSingleCandidate() {
 
-
+         let numberP = +read("Enter Un Number de candidat :");
+                        for (let i = 1; i <= numberP; i++) {
+                                
+                       
         cin = read("CIN :");
         nom = read("NOM :");
         prenom = read("PRENIOM :");
@@ -164,17 +165,19 @@ function addSingleCandidate() {
         candidats.push(candidat);
         console.table(candidats);
 
+         }
+
 }
 
 function DisipalyCandidtes() {
 
         console.log("************Menu D affichage***********");
         console.log("1. Afficher la list des candidats");
-        console.log("2. Afficher par tier");
+        console.log("2. Afficher par trier");
         console.log("3. Afficher par filter");
         console.log("4. Revenir Au Menu Principale");
         choix = +read("enter votre choix :")
-        console.log("\n\n\n");
+        console.log("------------------------");
 
 
         switch (choix) {
@@ -187,33 +190,34 @@ function DisipalyCandidtes() {
                                 console.log("PARTIEPOLITIQUE:", candidats[i].partiPolitique);
                                 console.log("AGE :", candidats[i].age);
                                 console.log("ELECTEUR :", candidats[i].electeurs.length);
-                                console.log("\n\n\n");
+                                console.log("------------------------");
+                                
                         }
+
+
 
                         break;
                 case 2:
 
-
                         for (let i = 0; i < candidats.length; i++) {
-                                for (let j = 0; j < candidats[i].length -1 ; j++) {
+                                for (let j = 0; j < candidats.length - 1; j++) {
                                         if (candidats[j].electeurs.length < candidats[j + 1].electeurs.length) {
                                                 let temp = candidats[j + 1];
-                                                candidats[j+1] = candidats[j];
+                                                candidats[j + 1] = candidats[j];
                                                 candidats[j] = temp
                                         }
                                 }
 
                         }
 
-                        console.log(candidats);
-                        
+                        console.table(candidats);
 
                         break;
                 case 3:
 
                         break;
                 case 4:
-
+                        displayMenu()
                         break;
 
                 default:
@@ -222,3 +226,24 @@ function DisipalyCandidtes() {
         }
 
 }
+
+
+function voter() {
+        voterCin = read("Enter Your CIN :")
+
+        for (let i = 0; i < candidats.length; i++) {
+                for (let j = 0; j < candidats[i].electeurs.length; j++) {
+                        if (candidats[i].electeurs[i].length === voterCin) {
+                               console.log("Vous aver deja vote");
+                               
+                        }else {
+
+                        }
+                        
+                }
+        }
+                
+ }
+
+
+
