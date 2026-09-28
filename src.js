@@ -1,0 +1,249 @@
+const read = require("prompt-sync")();
+
+const candidats = [
+        {
+                cin: "AB11",
+                nom: "Boushaba",
+                prenom: "Soufiane",
+                partiPolitique: "PJD",
+                age: 40,
+                electeurs: ["AB12", "AB11"]
+        },
+
+        {
+                cin: "AB13",
+                nom: "Khalid",
+                prenom: "Ouazzani",
+                partiPolitique: "RNI",
+                age: 40,
+                electeurs: ["AB12", "AB11", "AB13", "AB13"]
+        },
+        {
+                cin: "AB12",
+                nom: "Khalid",
+                prenom: "Ouazzani",
+                partiPolitique: "PAN",
+                age: 40,
+                electeurs: ["AB12", "AB11", "AB13"]
+
+
+        }
+];
+
+let choix = 0;
+
+do {
+
+        //////////////Called Functions///// 
+        displayMenu()
+
+
+        switch (choix) {
+                case 1:
+
+                        addCandidate();
+
+                        break;
+                case 2:
+                        DisipalyCandidtes();
+
+                        break;
+                case 3:
+                        voter();
+
+                        break;
+                case 4:
+
+                        break;
+                case 5:
+
+                        break;
+                case 6:
+
+                        break;
+                case 7:
+
+                        break;
+                case 0:
+
+                        break;
+
+                default:
+                        console.log("Choix n est pas valide");
+                        break;
+        }
+
+} while (choix !== 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////Functions to be called/////////0
+
+function displayMenu() {
+        ////////////Menu ///////////
+        console.log("*********Menu Principale******");
+        console.log("1. ajouter un condidat");
+        console.log("2. afficer la list de candidats");
+        console.log("3. voter ");
+        console.log("4. modifier les information ");
+        console.log("5. suprimer un candidat ");
+        console.log("6. rechercher ");
+        console.log("7. statistique ");
+        console.log("0. quitter");
+        choix = +read("Enter votre choix :")
+        console.log("\n");
+        console.log("------------------------");
+
+}
+
+function addCandidate() {
+        console.log("*********Menu D ajoute Principlae******");
+        console.log("1. ajouter un candidat");
+        console.log("2. ajouter plusieur candidat");
+        console.log("0. revenir au menu principale");
+        choix = +read("enter votre choix :")
+         console.log("------------------------");
+
+
+        switch (choix) {
+                case 1:
+
+                        addSingleCandidate()
+
+                        break;
+                case 2:
+                        addSingleCandidate();
+                       
+                        break;
+                case 0:
+
+                        displayMenu();
+                        break;
+
+                default:
+                        console.log("Choix n est pas valide");
+                        break;
+        }
+
+}
+
+function addSingleCandidate() {
+
+         let numberP = +read("Enter Un Number de candidat :");
+                        for (let i = 1; i <= numberP; i++) {
+                                
+                       
+        cin = read("CIN :");
+        nom = read("NOM :");
+        prenom = read("PRENIOM :");
+        partiPolitique = read("partiPolitique :");
+        age = read("age :")
+
+        let candidat = {
+                cin: cin,
+                nom: nom,
+                prenom: prenom,
+                partiPolitique: partiPolitique,
+                age: age,
+                electeurs: []
+        }
+
+        candidats.push(candidat);
+        console.table(candidats);
+
+         }
+
+}
+
+function DisipalyCandidtes() {
+
+        console.log("************Menu D affichage***********");
+        console.log("1. Afficher la list des candidats");
+        console.log("2. Afficher par trier");
+        console.log("3. Afficher par filter");
+        console.log("4. Revenir Au Menu Principale");
+        choix = +read("enter votre choix :")
+        console.log("------------------------");
+
+
+        switch (choix) {
+                case 1:
+
+                        for (let i = 0; i < candidats.length; i++) {
+                                console.log("CIN :", candidats[i].cin);
+                                console.log("NOM :", candidats[i].nom);
+                                console.log("PRENOM :", candidats[i].prenom);
+                                console.log("PARTIEPOLITIQUE:", candidats[i].partiPolitique);
+                                console.log("AGE :", candidats[i].age);
+                                console.log("ELECTEUR :", candidats[i].electeurs.length);
+                                console.log("------------------------");
+                                
+                        }
+
+
+
+                        break;
+                case 2:
+
+                        for (let i = 0; i < candidats.length; i++) {
+                                for (let j = 0; j < candidats.length - 1; j++) {
+                                        if (candidats[j].electeurs.length < candidats[j + 1].electeurs.length) {
+                                                let temp = candidats[j + 1];
+                                                candidats[j + 1] = candidats[j];
+                                                candidats[j] = temp
+                                        }
+                                }
+
+                        }
+
+                        console.table(candidats);
+
+                        break;
+                case 3:
+
+                        break;
+                case 4:
+                        displayMenu()
+                        break;
+
+                default:
+                        console.log("Choix n est pas valide");
+                        break;
+        }
+
+}
+
+
+function voter() {
+        voterCin = read("Enter Your CIN :")
+
+        for (let i = 0; i < candidats.length; i++) {
+                for (let j = 0; j < candidats[i].electeurs.length; j++) {
+                        if (candidats[i].electeurs[i].length === voterCin) {
+                               console.log("Vous aver deja vote");
+                               
+                        }else {
+
+                        }
+                        
+                }
+        }
+                
+ }
+
+
+
