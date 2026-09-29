@@ -48,7 +48,7 @@ do {
                 case 3:
                         voter();
 
-                        break; 
+                        break;
                 case 4:
                         modifierInfo()
                         break;
@@ -57,15 +57,16 @@ do {
 
                         break;
                 case 6:
-
+                        recherchcandidat();
                         break;
+
                 case 7:
-
+                        console.log("Coming soon....");
                         break;
+
                 case 0:
 
                         break;
-
                 default:
                         console.log("Choix n est pas valide");
                         break;
@@ -137,27 +138,43 @@ function addCandidate() {
 
 }
 
+
 function addSingleCandidate() {
-
-        cin = read("CIN :");
-        nom = read("NOM :");
-        prenom = read("PRENIOM :");
-        partiPolitique = read("partiPolitique :");
-        age = read("age :")
-
-        let candidat = {
-                cin: cin,
-                nom: nom,
-                prenom: prenom,
-                partiPolitique: partiPolitique,
-                age: age,
-                electeurs: []
+        let cin = read("CIN :").toUpperCase();
+        let candidatExists = false;
+        for (let i = 0; i < candidats.length; i++) {
+                if (candidats[i].cin === cin) {
+                        candidatExists = true;
+                        break;
+                }
         }
 
-        candidats.push(candidat);
-        console.table(candidats);
+        if (candidatExists) {
 
+                console.log("CIN already exixts");
+
+        } else {
+
+                let nom = read("NOM :");
+                let prenom = read("PRENOM :");
+                let partiPolitique = read("Parti politique :");
+                let age = read("Age :");
+
+                let candidat = {
+                        cin: cin,
+                        nom: nom,
+                        prenom: prenom,
+                        partiPolitique: partiPolitique,
+                        age: age,
+                        electeurs: []
+                };
+
+                candidats.push(candidat);
+
+                console.table(candidats);
+        }
 }
+
 
 function addMultycandidates() {
 
@@ -172,7 +189,7 @@ function DisipalyCandidtes() {
 
         console.log("-------Menu D affichage------");
         console.log("1. Afficher la list des candidats");
-        console.log("2. Afficher par tier");
+        console.log("2. Afficher par trie");
         console.log("3. Afficher par filter");
         console.log("0. Revenir Au Menu Principale");
         choix = +read("enter votre choix :")
@@ -210,10 +227,33 @@ function DisipalyCandidtes() {
                         break;
                 case 3:
 
+                        let filtrerbyparty = read("Entrer le parti : ");
+
+                        let counter = 0;
+
+                        for (let i = 0; i < candidats.length; i++) {
+
+                                if (candidats[i].partiPolitique === filtrerbyparty) {
+
+                                        console.log("Candidat " + (i + 1));
+                                        console.log("CIN : " + candidats[i].cin);
+                                        console.log("NOM : " + candidats[i].nom);
+                                        console.log("PRENOM : " + candidats[i].prenom);
+                                        console.log("Parti politique : " + candidats[i].partiPolitique);
+                                        console.log("AGE : " + candidats[i].age);
+                                        console.log("ELECTEURS : " + candidats[i].electeurs.length);
+
+                                        counter++;
+                                }
+                        }
+
+                        if (counter === 0) {
+                                console.log("Aucun candidat trouvé");
+                        }
                         break;
                 case 0:
 
-                       displayMenu();
+                        displayMenu();
 
                         break;
 
@@ -258,7 +298,6 @@ function isElecteuralreadyVoted(electeurCin) {
 }
 
 function displayCandidateurToVoteFor() {
-
         for (const candidat of candidats) {
                 console.log("CIN :", candidat.cin);
                 console.log("NOM :", candidat.nom);
@@ -266,7 +305,6 @@ function displayCandidateurToVoteFor() {
                 console.log("PARTIEPOLITIQUE:", candidat.partiPolitique);
                 console.log("AGE :", candidat.age);
                 console.log("-----------------------");
-
         }
 
 }
@@ -312,7 +350,7 @@ function modifierInfo() {
                 case 2:
                         let ageSearsh = read("Entrer CIN de candidat")
                         for (let i = 0; i < candidats.length; i++) {
-                                if (candidats[i].cin === ageSearsh) {
+                                if (candidats[i].age === ageSearsh) {
                                         let newAge = read("Entre Nouveau age.")
                                         candidats[i].age = newAge;
                                         console.log("l'age modifie avec succee.");
@@ -345,6 +383,35 @@ function sumprimerCandidat() {
 
         }
         console.log("Candidat n'exist pas.");
+
+}
+
+function recherchcandidat() {
+
+        cinSearsh = read("Enter Cin de candidat :")
+        let candidatfound = false
+        for (let i = 0; i < candidats.length; i++) {
+                if (candidats[i].cin === cinSearsh) {
+                        console.log("candidat exist :")
+                        console.log("cin : " + candidats[i].cin)
+                        console.log("prenom : " + candidats[i].prenom)
+                        console.log("nom : " + candidats[i].nom)
+                        console.log("parti politique : " + candidats[i].partiPolitique)
+                        console.log("age : " + candidats[i].age)
+                        candidatfound = true
+                        break;
+
+                }
+
+
+        }
+        if (candidatfound == false) {
+                console.log("Candidat doesnt exixt");
+        }
+
+
+
+
 
 }
 
